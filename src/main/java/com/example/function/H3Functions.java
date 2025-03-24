@@ -190,7 +190,7 @@ public class H3Functions {
             String h3IndexStr = args.get(0).asString();
             long h3Index;
             try {
-                h3Index = Long.parseLong(h3IndexStr);
+                    h3Index = Long.parseLong(h3IndexStr);
                 boolean isValid = h3.isValidCell(h3Index);
                 return ExprEval.of(isValid ? 1 : 0);
             } catch (NumberFormatException e) {

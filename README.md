@@ -21,21 +21,22 @@ This extension supports the following H3 functions:
 
 ## Requirements
 
-- Apache Druid 0.23.0 or newer
+- Apache Druid 25.0.0 or newer
 - Java 8 or newer
 - Maven 3.x
+- H3 version 4.1.1
 
 ## Installation
 
 1. Build the extension:
    ```bash
-   mvn clean package
+   mvn clean package dependency:copy-dependencies -DincludeScope=runtime
    ```
 
 2. Place the generated JAR file and all dependencies into the Druid extensions folder:
    ```bash
    mkdir -p ${DRUID_HOME}/extensions/h3-extension/
-   cp target/h3-druid-extension-*.jar ${DRUID_HOME}/extensions/h3-extension/
+   cp target/druid-h3-extension-*.jar ${DRUID_HOME}/extensions/h3-extension/
    cp target/dependency/h3-*.jar ${DRUID_HOME}/extensions/h3-extension/
    ```
 
@@ -145,11 +146,14 @@ WHERE h3_distance(
 ### Project Structure
 
 ```
-src/main/java/org/example/druid/h3/
-├── H3Functions.java         # Implementations of all H3 functions
-├── H3Module.java            # Druid module definition
-├── DruidH3Bindings.java     # Binding functions to Druid
-└── H3FunctionExprMacro.java # ExprMacro implementation
+src/main/java/com/example/
+├── function/
+│   ├── H3Functions.java         # Implementations of all H3 functions
+│   └── H3FunctionExprMacro.java # ExprMacro implementation
+├── binding/
+│   └── DruidH3Bindings.java     # Binding functions to Druid
+└── module/
+    └── H3Module.java            # Druid module definition
 
 src/main/resources/META-INF/services/
 └── org.apache.druid.initialization.DruidModule # Service definition
@@ -173,13 +177,13 @@ mvn test
 
 ## License
 
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+This project is licensed under the Apache License 2.0 - see the `LICENSE` file for details.
 
 ## Contact
 
-Project Owner: [Your Name](mailto:email@example.com)
+Project Owner: [Kadir Ozer](mailto:abdozer68@gmail.com)
 
-Project Link: [https://github.com/username/druid-h3-extension](https://github.com/username/druid-h3-extension)
+Project Link: [https://github.com/abdkadirozer/druid-h3-extension](https://github.com/abdkadirozer/druid-h3-extension)
 
 ## Acknowledgments
 
